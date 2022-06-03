@@ -1,5 +1,6 @@
 package com.kenzie.app;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
@@ -25,5 +26,38 @@ public class Main {
         // Your output should exactly match the way these are formatted with spaces, commas, and the "and"
 
         // Your Code Here
+
+        //variables
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> nameList = new ArrayList<>();
+        boolean exitFlag = false;
+        String userInput;
+
+        System.out.println("Enter the names. Hit enter on blank line to end.");
+
+        while (!exitFlag){
+            userInput = scanner.nextLine();
+            if(userInput.equals("")){
+                exitFlag = true;
+            }
+            else {
+                nameList.add(userInput);
+            }
+        }
+        StringBuilder outputString = new StringBuilder(String.join(", ",nameList));
+
+        //add "and" depending on how many attendees
+        int startIndex = outputString.lastIndexOf(",");
+        int endIndex = startIndex + 1;
+        if(nameList.size() == 2){
+            outputString.replace(startIndex,endIndex," and");
+        }
+        else if(nameList.size()>2){
+            outputString.insert(outputString.lastIndexOf(",")+1," and");
+        }
+
+
+
+        System.out.println("You have invited: " + outputString);
     }
 }
