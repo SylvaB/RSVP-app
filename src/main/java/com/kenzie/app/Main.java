@@ -1,6 +1,5 @@
 package com.kenzie.app;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
@@ -55,9 +54,6 @@ public class Main {
         else if(nameList.size()>2){
             outputString.insert(outputString.lastIndexOf(",")+1," and");
         }
-
-
-
         System.out.println("You have invited: " + outputString);
     }
 }
