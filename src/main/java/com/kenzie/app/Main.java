@@ -1,5 +1,7 @@
 package com.kenzie.app;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
@@ -25,35 +27,42 @@ public class Main {
         // Your output should exactly match the way these are formatted with spaces, commas, and the "and"
 
         // Your Code Here
+        System.out.println("Welcome! Who would you like to invite to the party?");
+        System.out.println("Enter an attendee name and press Enter.  \n" +
+                "Leave the name blank and press enter when you are done.");
 
-        //variables
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<String> nameList = new ArrayList<>();
-        boolean exitFlag = false;
-        String userInput;
+        String outputList = "";
+        ArrayList<String> listOfNames = new ArrayList<>();
 
-        System.out.println("Enter the names. Hit enter on blank line to end.");
+        outputList= formatAttendeeList(listOfNames);
 
-        while (!exitFlag){
-            userInput = scanner.nextLine();
-            if(userInput.equals("")){
-                exitFlag = true;
-            }
-            else {
-                nameList.add(userInput);
-            }
-        }
-        StringBuilder outputString = new StringBuilder(String.join(", ",nameList));
-
-        //add "and" depending on how many attendees
-        int startIndex = outputString.lastIndexOf(",");
-        int endIndex = startIndex + 1;
-        if(nameList.size() == 2){
-            outputString.replace(startIndex,endIndex," and");
-        }
-        else if(nameList.size()>2){
-            outputString.insert(outputString.lastIndexOf(",")+1," and");
-        }
-        System.out.println("You have invited: " + outputString);
+        System.out.println("You have invited: " + outputList);
     }
+        public static String formatAttendeeList(ArrayList<String> listOfNames) {
+            Scanner scanner = new Scanner(System.in);
+            boolean exitFlag = false;
+            String userInput;
+            while (!exitFlag){
+                userInput = scanner.nextLine();
+                if(userInput.equals("")){
+                    exitFlag = true;
+                }
+                else {
+                    listOfNames.add(userInput);
+                }
+            }
+            StringBuilder outputString = new StringBuilder(String.join(", ",listOfNames));
+            //add "and" depending on how many attendees
+            int startIndex = outputString.lastIndexOf(",");
+            int endIndex = startIndex + 1;
+            if(listOfNames.size() == 2){
+                outputString.replace(startIndex,endIndex," and");
+            }
+            else if(listOfNames.size()>2){
+                outputString.insert(outputString.lastIndexOf(",")+1," and");
+            }
+
+            String finalString = outputString.toString();
+            return finalString;
+        }
 }
